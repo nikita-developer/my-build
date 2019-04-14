@@ -10,7 +10,7 @@ var browserSync           = require('browser-sync'),
     uglify                = require('gulp-uglify');
 
 gulp.task('sass', function() {
-  gulp.src('src/app/style/**/*.scss')
+  gulp.src(['src/app/style/core/*.scss', 'src/app/style/plugin/**/*.scss', 'src/app/style/block/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
