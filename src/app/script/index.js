@@ -1,3 +1,4 @@
-function functionNam2e() {
-  return
-}
+
+// $(document).ready(function() {
+//
+// })

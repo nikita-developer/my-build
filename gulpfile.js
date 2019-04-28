@@ -38,28 +38,3 @@ gulp.task('sync', function() {
 });
 
 gulp.task('default', gulp.parallel('sync', 'sass', 'script'));
-//
-// gulp.task('cssMin', function() {
-//   return gulp.src('src/app/style/css/style.css')
-//     .pipe(cleanCSS({compatibility: 'ie8'}))
-//     .pipe(gulp.dest('src/build/app/style/css/'));
-// });
-//
-// gulp.task('jsMin', function() {
-//   return gulp.src('src/app/script/*js')
-//     .pipe(uglify())
-//     .pipe(gulp.dest('src/build/app/script/'));
-// });
-//
-// gulp.task('imgMin', function() {
-//   return gulp.src('src/app/media/**/*')
-//     .pipe(imagemin())
-//     .pipe(gulp.dest('src/build/app/media/'));
-// });
-//
-// gulp.task('cleanFolder', function () {
-//   return gulp.src('src/build', {read: false})
-//     .pipe(clean());
-// });
-//
-// gulp.task('build', gulp.series('cleanFolder', 'cssMin', 'jsMin', 'imgMin'));
