@@ -35,6 +35,7 @@ gulp.task('sync', function() {
 
   gulp.watch(['src', '!src/app/style']).on('change', browserSync.reload);
   gulp.watch('src/app/style/**/*.scss', gulp.series('sass'));
+  gulp.watch('src/app/script/plugin/**/*.js', gulp.series('script'));
 });
 
 gulp.task('default', gulp.parallel('sync', 'sass', 'script'));
