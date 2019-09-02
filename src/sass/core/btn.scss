@@ -1,0 +1,190 @@
+
+.btn {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 25px 46px;
+  cursor: pointer;
+  transition: .3s;
+  color: #000;
+  background-color: transparent;
+  text-align: center;
+
+  &:hover {
+    text-decoration: none;
+    color: #000;
+
+    &::after {
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    z-index: -1;
+    top: 7px;
+    left: 7px;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background-color: rgb(60, 213, 45);
+    transition: .3s;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    border: 1px solid rgba(0, 0, 0, .7);
+  }
+
+  &_orange {
+    &::after {
+      background-color: #ffcb5b;
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .btn {
+    padding: 1rem;
+    font-size: 14px;
+  }
+}
+
+.button {
+  display: block;
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1.5rem;
+  margin-top: 50px;
+  color: #fff;
+  cursor: pointer;
+  transform: skew(-8deg);
+
+  &.button_green {
+    &::before {
+      background-color: #000;
+    }
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: #ffcc5b;
+
+    &::before {
+      transform: translate(0, 0);
+      background-color: #000;
+    }
+
+    & .button__btn {
+
+      &_bdt {
+        &::before {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &_bdr {
+        &::before {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &_bdb {
+        &::before {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &_bdl {
+        &::before {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(.5rem, .5rem);
+    background-color: #3cd52d;
+    content: '';
+    transition: .3s;
+  }
+}
+
+.button__btn {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  transition: .6s;
+
+  &::before {
+    position: absolute;
+    z-index: 2;
+    width: 0;
+    height: 0;
+    background-color: #ffcc5b;
+    content: '';
+    transition: 1s;
+  }
+
+  &_bdt {
+    top: 0;
+    left: 0;
+    width: calc(100%);
+    height: 1px;
+
+    &::before {
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &_bdr {
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: calc(100%);
+
+    &::before {
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &_bdb {
+    bottom: 0;
+    right: 0;
+    width: calc(100%);
+    height: 1px;
+
+    &::before {
+      top: 0;
+      right: 0;
+    }
+  }
+
+  &_bdl {
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: calc(100%);
+
+    &::before {
+      bottom: 0;
+      left: 0;
+    }
+  }
+}

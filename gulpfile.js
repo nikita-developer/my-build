@@ -1,41 +1,51 @@
-var browserSync           = require('browser-sync'),
-    gulp                  = require('gulp'),
-    autoprefixer          = require('gulp-autoprefixer'),
-    cleanCSS              = require('gulp-clean-css'),
-    concat                = require('gulp-concat'),
-    concatCss             = require('gulp-concat-css'),
-    imagemin              = require('gulp-imagemin'),
-    sass                  = require('gulp-sass'),
-    clean                 = require('gulp-clean'),
-    uglify                = require('gulp-uglify');
+var browserSync = require('browser-sync'),
+    gulp = require('gulp'),
+    autoprefixer = require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
+    concatCss = require('gulp-concat-css'),
+    sass = require('gulp-sass'),
+    rigger = require('gulp-rigger'),
+    uglify = require('gulp-uglify'),
+    del = require('del');
 
-gulp.task('sass', function() {
-  return gulp.src(['src/app/style/core/*.scss', 'src/app/style/plugin/**/*.scss', 'src/app/style/block/**/*.scss'])
+gulp.task('include', function () {
+  return gulp.src('src/template/*.html')
+    .pipe(rigger())
+    .pipe(gulp.dest('src/'))
+});
+
+gulp.task('clean', function () {
+  return del('src/*.html');
+});
+
+gulp.task('sass', function () {
+  return gulp.src(['src/sass/core/*.scss', 'src/sass/plugin/**/*.scss', 'src/sass/block/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(concatCss('style.css'))
     .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
+      overrideBrowserslist: ['last 2 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('src/app/style/css'))
+    .pipe(gulp.dest('src/css'))
     .pipe(browserSync.stream());
 });
 
-gulp.task('script', function() {
- return  gulp.src('src/app/script/plugin/**/*.js')
+gulp.task('js', function () {
+  return gulp.src('src/js/plugin/**/*.js')
     .pipe(concat('plugin.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('src/app/script'));
+    .pipe(gulp.dest('src/js'));
 });
 
-gulp.task('sync', function() {
+gulp.task('sync', function () {
   browserSync.init({
     server: 'src'
   });
 
-  gulp.watch(['src', '!src/app/style']).on('change', browserSync.reload);
-  gulp.watch('src/app/style/**/*.scss', gulp.series('sass'));
-  gulp.watch('src/app/script/plugin/**/*.js', gulp.series('script'));
+  gulp.watch(['src/template/*.html', 'src/js/*.js', 'src/media/', 'src/fonts/']).on('change', browserSync.reload);
+  gulp.watch('src/sass/**/*.scss', gulp.series('sass'));
+  gulp.watch('src/js/plugin/**/*.js', gulp.series('js'));
+  gulp.watch('src/template/*.html', gulp.series('clean', 'include'));
 });
 
-gulp.task('default', gulp.parallel('sync', 'sass', 'script'));
+gulp.task('default', gulp.parallel('sync', 'sass', 'js', 'include'));
