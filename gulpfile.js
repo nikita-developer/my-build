@@ -42,10 +42,10 @@ gulp.task('sync', function () {
     server: 'src'
   });
 
-  gulp.watch(['src/template/*.html', 'src/js/*.js', 'src/media/', 'src/fonts/']).on('change', browserSync.reload);
+  gulp.watch(['src/template/**/*.html', 'src/js/*.js', 'src/media/', 'src/fonts/']).on('change', browserSync.reload);
   gulp.watch('src/sass/**/*.scss', gulp.series('sass'));
   gulp.watch('src/js/plugin/**/*.js', gulp.series('js'));
-  gulp.watch('src/template/*.html', gulp.series('clean', 'include'));
+  gulp.watch('src/template/**/*.html', gulp.series('clean', 'include'));
 });
 
 gulp.task('default', gulp.parallel('sync', 'sass', 'js', 'include'));
