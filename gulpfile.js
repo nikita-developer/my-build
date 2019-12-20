@@ -35,7 +35,7 @@ gulp.task('pug', function () {
 });
 
 gulp.task('prettify', function() {
-  gulp.src('src/template/*.html')
+  return gulp.src('src/template/*.html')
     .pipe(prettify({
       indent_char: ' ',
       indent_size: 2
@@ -94,7 +94,7 @@ gulp.task('pug-build', function () {
 });
 
 gulp.task('prettify-build', function() {
-  gulp.src('build/template/*.html')
+  return gulp.src('build/template/*.html')
     .pipe(prettify({
       indent_char: ' ',
       indent_size: 2
@@ -104,15 +104,6 @@ gulp.task('prettify-build', function() {
 
 gulp.task('del-build', function() {
   return del('build');
-});
-
-gulp.task('prettify-build', function() {
-  gulp.src('src/template/*.html')
-    .pipe(prettify({
-      indent_char: ' ',
-      indent_size: 2
-    }))
-    .pipe(gulp.dest('build/template'))
 });
 
 gulp.task('build', gulp.series('del-build', 'sass-build', 'js', 'js-build', 'pug-build', 'prettify-build', 'fonts-build'));
