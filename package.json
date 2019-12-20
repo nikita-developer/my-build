@@ -4,20 +4,18 @@
   "description": "my build",
   "main": "index.js",
   "dependencies": {
-    "del": "^5.1.0",
     "git": "^0.1.5",
     "gulp-files-sync": "^0.3.2",
     "gulp-minify-css": "^1.2.4"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
+    "del": "^5.1.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
-    "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-concat-css": "^3.1.0",
     "gulp-html-prettify": "0.0.1",
-    "gulp-imagemin": "^5.0.3",
     "gulp-pug": "^4.0.1",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2"
