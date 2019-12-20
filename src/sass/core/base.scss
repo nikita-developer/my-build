@@ -37,31 +37,6 @@ html {
   box-sizing: inherit;
 }
 
-p {
-  font-weight: 300;
-  font-size: 14px;
-
-  & + & {
-    margin-top: .5rem;
-  }
-}
-
-.bodyNoSkroll {
-  overflow-y: visible;
-}
-
-.hideScroll {
-  overflow: hidden;
-}
-
-@media (min-width: 769px) {
-  .hideScroll {
-    overflow: auto !important;
-    padding-right: 0 !important;
-  }
-}
-
-
 // input::-webkit-input-placeholder { color: #fff; }
 // input:-ms-input-placeholder { color: #fff; }
 // input::-ms-input-placeholder { color: #fff; }
