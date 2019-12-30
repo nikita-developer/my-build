@@ -79,6 +79,13 @@ gulp.task('fonts-build', function () {
     .pipe(gulp.dest('build/'));
 });
 
+gulp.task('media-build', function () {
+  return gulp.src(['src/media/**/*'], {
+    base: 'src'
+  })
+    .pipe(gulp.dest('build/'));
+});
+
 gulp.task('pug-build', function () {
   return gulp.src('src/template/pug/*.pug')
     .pipe(pug())
@@ -89,4 +96,4 @@ gulp.task('del-build', function() {
   return del('build');
 });
 
-gulp.task('build', gulp.series('del-build', 'sass-build', 'js', 'js-build', 'pug-build', 'fonts-build'));
+gulp.task('build', gulp.series('del-build', 'sass-build', 'js', 'js-build', 'pug-build', 'fonts-build', 'media-build'));
