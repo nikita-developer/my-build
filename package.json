@@ -1,35 +1,34 @@
 {
-  "name": "nikita",
-  "version": "1.0.0",
-  "description": "my build",
-  "main": "index.js",
-  "dependencies": {
-    "git": "^0.1.5",
-    "gulp-files-sync": "^0.3.2",
-    "gulp-minify-css": "^1.2.4"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.26.3",
-    "del": "^5.1.0",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-concat-css": "^3.1.0",
-    "gulp-pug": "^4.0.1",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spas199/my-build.git"
-  },
-  "bugs": {
-    "url": "https://github.com/spas199/my-build/issues"
-  },
-  "homepage": "https://github.com/spas199/my-build#readme"
+    "name": "nikita",
+    "version": "1.0.0",
+    "homepage": "https://github.com/spas199/my-build#readme",
+    "bugs": {
+        "url": "https://github.com/spas199/my-build/issues"
+    },
+    "license": "ISC",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/spas199/my-build.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "git": "^0.1.5",
+        "gulp-files-sync": "^0.3.2",
+        "gulp-minify-css": "^1.2.4"
+    },
+    "devDependencies": {
+        "browser-sync": "^2.26.3",
+        "del": "^5.1.0",
+        "gulp": "^4.0.0",
+        "gulp-autoprefixer": "^6.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-concat-css": "^3.1.0",
+        "gulp-ejs": "^5.0.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-uglify": "^3.0.2"
+    }
 }
