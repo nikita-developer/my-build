@@ -7,14 +7,24 @@ var browserSync = require('browser-sync'),
     uglify = require('gulp-uglify'),              // сжатие js
     ejs = require("gulp-ejs"),                    // шаблонизатор HTML
     del = require('del'),                         // удаление
-    rename = require('gulp-rename');              // переименование
+    rename = require('gulp-rename'),              // переименованиеvar
+    gulpStylelint = require('gulp-stylelint');    // linter
+
+gulp.task('lintCss', function lintCssTask() {
+  return gulp.src('src/sass/block/*.scss')
+    .pipe(gulpStylelint({
+      reporters: [
+        {formatter: 'string', console: true}
+      ]
+    }));
+});
 
 gulp.task('sass', function () {
   return gulp.src(['src/sass/core/*.scss', 'src/sass/plugin/**/*.scss', 'src/sass/block/**/*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(concatCss('style.css'))
     .pipe(autoprefixer({
-      overrideBrowserslist: ['last 2 versions'],
+      overrideBrowserslist: ['last 4 versions'],
       cascade: false
     }))
     .pipe(gulp.dest('src/css'))
@@ -45,7 +55,7 @@ gulp.task('sync', function () {
   });
 
   gulp.watch(['src/template/*.html', 'src/js/*.js', 'src/media/', 'src/fonts/']).on('change', browserSync.reload);
-  gulp.watch('src/sass/**/*.scss', gulp.series('sass'));
+  gulp.watch('src/sass/**/*.scss', gulp.series('sass','lintCss'));
   gulp.watch('src/js/plugin/**/*.js', gulp.series('js'));
   gulp.watch('src/template/ejs/**/*.ejs', gulp.series('del', 'ejs'));
 });
