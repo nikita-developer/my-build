@@ -1,17 +1,16 @@
-
 .btn {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  padding: 25px 46px;
-  cursor: pointer;
-  transition: .3s;
-  color: #000;
-  background-color: transparent;
-  text-align: center;
-
-  &:hover {
-    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 25px 46px;
     color: #000;
-  }
+    text-align: center;
+    cursor: pointer;
+    background-color: transparent;
+    transition: 0.3s;
+
+    &:hover {
+        color: #000;
+        text-decoration: none;
+    }
 }
