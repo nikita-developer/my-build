@@ -30,10 +30,10 @@ html {
 
 body {
   min-width: 320px;
-  font-family: var(--base-font-family);
-  font-size: var(--base-font-size);
-  line-height: 1.45;
-  color: var(--base-text-color);
+  font-family: "formular", sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #000;
   background-color: #fff;
 }
 
@@ -116,8 +116,8 @@ i {
 }
 
 mark {
-  color: var(--c-base-black);
-  background: var(--c-base-yellow);
+  color: #000;
+  background: yellow;
 }
 
 progress {
