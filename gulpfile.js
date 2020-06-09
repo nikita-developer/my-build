@@ -16,7 +16,8 @@ gulp.task('lintCss', function lintCssTask() {
       reporters: [
         {formatter: 'string', console: true}
       ]
-    }));
+    }))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('sass', function () {
@@ -27,8 +28,8 @@ gulp.task('sass', function () {
       overrideBrowserslist: ['last 4 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('src/css'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('src/css'));
+
 });
 
 gulp.task('js', function () {
