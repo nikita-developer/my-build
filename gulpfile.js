@@ -1,14 +1,22 @@
 var browserSync = require('browser-sync'),
     gulp = require('gulp'),
-    autoprefixer = require('gulp-autoprefixer'),  // добавляем префиксы
-    concat = require('gulp-concat'),              // сборка файлов в один
-    concatCss = require('gulp-concat-css'),       // сборка файлов в один
-    sass = require('gulp-sass'),                  // препроцессор
-    uglify = require('gulp-uglify'),              // сжатие js
-    ejs = require("gulp-ejs"),                    // шаблонизатор HTML
-    del = require('del'),                         // удаление
-    rename = require('gulp-rename'),              // переименованиеvar
-    gulpStylelint = require('gulp-stylelint');    // linter
+    autoprefixer = require('gulp-autoprefixer'),    // добавляем префиксы
+    concat = require('gulp-concat'),                // сборка файлов в один
+    concatCss = require('gulp-concat-css'),         // сборка файлов в один
+    sass = require('gulp-sass'),                    // препроцессор
+    uglify = require('gulp-uglify'),                // сжатие js
+    ejs = require("gulp-ejs"),                      // шаблонизатор HTML
+    del = require('del'),                           // удаление
+    rename = require('gulp-rename'),                // переименованиеvar
+    gulpStylelint = require('gulp-stylelint'),      // linter
+    gcmq = require('gulp-group-css-media-queries'); // комбинирует стили
+
+gulp.task('gcmq', function () {
+    return gulp.src('src/css/style.css')
+        .pipe(gcmq())
+        .pipe(gulp.dest('src/css'))
+        .pipe(browserSync.stream());
+});
 
 gulp.task('lintCss', function lintCssTask() {
   return gulp.src('src/sass/block/*.scss')
@@ -16,8 +24,7 @@ gulp.task('lintCss', function lintCssTask() {
       reporters: [
         {formatter: 'string', console: true}
       ]
-    }))
-    .pipe(browserSync.stream());
+    }));
 });
 
 gulp.task('sass', function () {
@@ -29,7 +36,6 @@ gulp.task('sass', function () {
       cascade: false
     }))
     .pipe(gulp.dest('src/css'));
-
 });
 
 gulp.task('js', function () {
@@ -56,9 +62,9 @@ gulp.task('sync', function () {
   });
 
   gulp.watch(['src/template/*.html', 'src/js/*.js', 'src/media/', 'src/fonts/']).on('change', browserSync.reload);
-  gulp.watch('src/sass/**/*.scss', gulp.series('sass','lintCss'));
+  gulp.watch('src/sass/**/*.scss', gulp.series('sass', 'lintCss', 'gcmq'));
   gulp.watch('src/js/plugin/**/*.js', gulp.series('js'));
   gulp.watch('src/template/ejs/**/*.ejs', gulp.series('del', 'ejs'));
 });
 
-gulp.task('default', gulp.parallel('sync', 'sass', 'js', 'ejs'));
+gulp.task('default', gulp.parallel('sync', 'sass', 'gcmq', 'js', 'ejs'));
