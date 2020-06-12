@@ -67,4 +67,4 @@ gulp.task('sync', function () {
   gulp.watch('src/template/ejs/**/*.ejs', gulp.series('del', 'ejs'));
 });
 
-gulp.task('default', gulp.parallel('sync', 'sass', 'gcmq', 'js', 'ejs'));
+gulp.task('default', gulp.series('sass', 'lintCss', 'gcmq', 'js', 'ejs', 'sync'));
